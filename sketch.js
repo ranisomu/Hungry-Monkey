@@ -19,7 +19,7 @@ function setup() {
   createCanvas(600,400);
 
   //creating monkey sprite
-  monkey = createSprite(80,315,20,20);
+  monkey = createSprite(80,320,20,20);
   monkey.addAnimation("moving", monkey_running);
   monkey.scale = 0.1;
   
@@ -36,7 +36,7 @@ function setup() {
   survivalTime = 0;
   
   monkey.setCollider("circle",0,0,260)
-  monkey.debug = true;
+  monkey.debug = false;
 }
 
 
@@ -85,6 +85,7 @@ function draw() {
     FoodGroup.setLifetimeEach(-1);
     obstacleGroup.setLifetimeEach(-1);
     score = 0;
+    survivalTime = 0;
   }
   drawSprites();
   
