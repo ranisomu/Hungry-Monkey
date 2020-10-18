@@ -48,12 +48,7 @@ function draw() {
   textSize(20);
   text("score : " + score,510,20)
   
-  stroke("black");
-  textSize(20);
-  fill("black");
   survivalTime = Math.ceil(frameCount/frameRate());
-  text("Survival Time : " + survivalTime,10,20)
-  
   
   //making monkey jump with gravity
   if(keyDown("space")&& monkey.y >= 314) {
@@ -84,9 +79,14 @@ function draw() {
     obstacleGroup.setVelocityXEach(0);
     FoodGroup.setLifetimeEach(-1);
     obstacleGroup.setLifetimeEach(-1);
-    score = 0;
     survivalTime = 0;
   }
+  
+  stroke("black");
+  textSize(20);
+  fill("black");
+  text("Survival Time : " + survivalTime,10,20)
+  
   drawSprites();
   
 }
