@@ -36,7 +36,6 @@ function setup() {
   obstacleGroup = createGroup();
   
   score = 0;
-  survivalTime = 0;
   
   monkey.setCollider("circle",0,0,260)
   monkey.debug = false;
