@@ -74,6 +74,11 @@ function draw() {
       obstacleGroup.setLifetimeEach(-1);
   }
   
+  stroke("black");
+  textSize(20);
+  fill("black");
+  text("Survival Time : " + survivalTime,10,20)
+  
   monkey.velocityY = monkey.velocityY + 1;
   monkey.collide(ground);
   //calling food and obstacle function
@@ -86,10 +91,6 @@ function draw() {
   fill("black");
   textSize(20);
   text("score : " + score,510,20)
-  stroke("black");
-  textSize(20);
-  fill("black");
-  text("Survival Time : " + survivalTime,10,20)
   
 }
 
