@@ -4,6 +4,9 @@ var banana ,bananaImage, obstacle, obstacleImage;
 var FoodGroup, obstacleGroup;
 var score, r;
 var survivalTime;
+var PLAY = 1;
+var END = 0;
+var gameState = PLAY;
 
 function preload(){
   
@@ -43,51 +46,51 @@ function setup() {
 function draw() {
   background("white");
   
-  //display score and survival time
-  fill("black");
-  textSize(20);
-  text("score : " + score,510,20)
-  
-  survivalTime = Math.ceil(frameCount/frameRate());
-  
-  //making monkey jump with gravity
-  if(keyDown("space")&& monkey.y >= 314) {
-    monkey.velocityY = -18;
-  }
-  monkey.velocityY = monkey.velocityY + 1;
-  monkey.collide(ground);
-  
+  if(gameState === Play) {
+    survivalTime = Math.ceil(frameCount/frameRate());
+    //making monkey jump with gravity
+    if(keyDown("space")&& monkey.y >= 314) {
+       monkey.velocityY = -18;
+    }
   //creating infinite ground
   //console.log(ground.x);
-  if(ground.x < 150){
-    ground.x = ground.width/2;
+    if(ground.x < 150){
+      ground.x = ground.width/2;
+    }
+    if(FoodGroup.isTouching(monkey)) {
+      FoodGroup.destroyEach();
+      score = score + 1;
+    }
+  
+    if(obstacleGroup.isTouching(monkey)) {
+      gameState = END;
+    }
+  }
+  if(gameState === END) {
+      ground.velocityX = 0;
+      monkey.velocityY = 0;
+      FoodGroup.setVelocityXEach(0);
+      obstacleGroup.setVelocityXEach(0);
+      FoodGroup.setLifetimeEach(-1);
+      obstacleGroup.setLifetimeEach(-1);
   }
   
+  monkey.velocityY = monkey.velocityY + 1;
+  monkey.collide(ground);
   //calling food and obstacle function
   Food();
   Obstacle();
   
-  if(FoodGroup.isTouching(monkey)) {
-    FoodGroup.destroyEach();
-    score = score + 1;
-  }
+  drawSprites();
   
-  if(obstacleGroup.isTouching(monkey)) {
-    ground.velocityX = 0;
-    monkey.velocityY = 0;
-    FoodGroup.setVelocityXEach(0);
-    obstacleGroup.setVelocityXEach(0);
-    FoodGroup.setLifetimeEach(-1);
-    obstacleGroup.setLifetimeEach(-1);
-    survivalTime = 0;
-  }
-  
+  //display score and survival time
+  fill("black");
+  textSize(20);
+  text("score : " + score,510,20)
   stroke("black");
   textSize(20);
   fill("black");
   text("Survival Time : " + survivalTime,10,20)
-  
-  drawSprites();
   
 }
 
