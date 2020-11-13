@@ -2,8 +2,9 @@ var monkey , monkey_running;
 var ground;
 var banana ,bananaImage, obstacle, obstacleImage;
 var FoodGroup, obstacleGroup;
-var score, r;
-var survivalTime;
+var score = 0;
+var r;
+var survivalTime = 0;
 var PLAY = 1;
 var END = 0;
 var gameState = PLAY;
@@ -11,8 +12,8 @@ var gameState = PLAY;
 function preload(){
   
  //preloading images
- monkey_running =                                          loadAnimation("sprite_0.png","sprite_1.png","sprite_2.png","sprite_3.png","sprite_4.png","sprite_5.png","sprite_6.png","sprite_7.png","sprite_8.png");
-  
+ monkey_running = loadAnimation("sprite_0.png","sprite_1.png","sprite_2.png","sprite_3.png","sprite_4.png","sprite_5.png","sprite_6.png","sprite_7.png","sprite_8.png");
+ 
  bananaImage = loadImage("banana.png");
  obstacleImage = loadImage("obstacle.png");
  
@@ -34,9 +35,6 @@ function setup() {
   //creating groups for banana and obstacles
   FoodGroup = createGroup();
   obstacleGroup = createGroup();
-  
-  score = 0;
-  survivalTime = 0;
   
   monkey.setCollider("circle",0,0,260)
   monkey.debug = false;
@@ -84,13 +82,13 @@ function draw() {
   drawSprites();
   
   //display score and survival time
-  fill("black");
-  textSize(20);
-  text("score : " + score,510,20)
   stroke("black");
   textSize(20);
   fill("black");
   text("Survival Time : " + survivalTime,10,20)
+  fill("black");
+  textSize(20);
+  text("score : " + score,510,20);
   
 }
 
