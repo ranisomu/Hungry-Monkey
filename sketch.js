@@ -46,7 +46,7 @@ function setup() {
 function draw() {
   background("white");
   
-  if(gameState === Play) {
+  if(gameState === PLAY) {
     survivalTime = Math.ceil(frameCount/frameRate());
     //making monkey jump with gravity
     if(keyDown("space")&& monkey.y >= 314) {
